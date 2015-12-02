@@ -192,8 +192,59 @@ Podemos mejorar el gráfico utilizando el biplot como se puede ver en la Figura~
 
 \subsection{Segunda cuestión}
 
+Comenzamos viendo los datos de los que disponenemos:
 
+\begin{verbatim}
+, , Sex = Male
 
+       Eye
+Hair    Brown Blue Hazel Green
+  Black    32   11    10     3
+  Brown    53   50    25    15
+  Red      10   10     7     7
+  Blond     3   30     5     8
+
+, , Sex = Female
+
+       Eye
+Hair    Brown Blue Hazel Green
+  Black    36    9     5     2
+  Brown    66   34    29    14
+  Red      16    7     7     7
+  Blond     4   64     5     8
+
+\end{verbatim}
+
+Los datos se encuentran dividos por sexo, por lo que debemos agrupar los datos de cada sexo para obtener los datos globales de hombres y mujeres.\\
+
+A continuación realizamos tres análisis de correspondencias: para mujeres, hombres y datos conjuntos.\\
+
+Realizamos, en primer lugar, el análisis para las mujeres. La Figura~\ref{fig:mujeres_ca} el resultado gráfico del análisis de correspondencias.\\
+
+\begin{figure}[tbph!]
+\centering
+\includegraphics[width=\linewidth]{imagenes/mujeres_ca}
+\caption{Análisis de correspondencias para las mujeres}
+\label{fig:mujeres_ca}
+\end{figure}
+
+Se puede observar que 
+
+\begin{figure}[tbph!]
+\centering
+\includegraphics[width=\linewidth]{imagenes/hombres_ca}
+\caption{Análisis de correspondencias para las hombres}
+\label{fig:hombres_ca}
+\end{figure}
+
+Se puede observar
+
+\begin{figure}[tbph!]
+\centering
+\includegraphics[width=\linewidth]{imagenes/global_ca}
+\caption{Análisis de correspondencias para los datos conjuntos}
+\label{fig:global_ca}
+\end{figure}
 \section{Conclusiones}
 
 \section{Código R}
