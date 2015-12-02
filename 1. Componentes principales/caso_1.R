@@ -19,20 +19,23 @@ Show(gabriel1971)
 summary(gabriel1971)
 
 # Realizamos el análisis de componentes principales escalando las variables
-prcomp(gabriel1971, scale=TRUE)
+prcomp(gabriel1971)
 
 # Resumen del análisis de componentes principales
 summary(prcomp(gabriel1971, scale=TRUE))
 
 # Gráfico de la importancia de cada componente
-plot(prcomp(gabriel1971, scale=TRUE))
+plot(prcomp(gabriel1971, scale=TRUE), main="Importancia de cada componente")
+
+# Gráfico de dispersión de las dos primeras componentes
+plot(prcomp(gabriel1971)$x[,1:2])
 
 # Gráfico con las dos primeras componentes
-plot(prcomp(gabriel1971, scale=TRUE)$x[,1:2], type='n')
-text(prcomp(gabriel1971, scale=TRUE)$x[,1:2], rownames(gabriel1971))
+plot(prcomp(gabriel1971)$x[,1:2], type='n')
+text(prcomp(gabriel1971)$x[,1:2], rownames(gabriel1971))
 
 # Usamos el biplot para incorporar la información de las variables
-biplot(prcomp(gabriel1971, scale=TRUE))
+biplot(prcomp(gabriel1971))
 
 #------------------------------------------------------------------------------
 # Cuestión 2
