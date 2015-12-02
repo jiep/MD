@@ -1,0 +1,150 @@
+\documentclass[12pt,a4paper,twoside,openright,titlepage,final]{article}
+\usepackage{fontspec}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage[hidelinks,unicode=true]{hyperref}
+\usepackage[spanish,es-nodecimaldot,es-lcroman,es-tabla,es-noshorthands]{babel}
+\usepackage[left=3cm,right=2cm, bottom=4cm]{geometry}
+\usepackage{natbib}
+\usepackage{microtype}
+\usepackage{ifdraft}
+\usepackage{verbatim}
+\usepackage[nottoc]{tocbibind}
+\usepackage{pdflscape}
+\usepackage[obeyDraft]{todonotes}
+\ifdraft{
+	\usepackage{draftwatermark}
+	\SetWatermarkText{BORRADOR}
+	\SetWatermarkScale{0.7}
+	\SetWatermarkColor{red}
+}{}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{calc}
+\usepackage{array}
+\usepackage{caption}
+\usepackage{subfigure}
+\usepackage{footnote}
+\usepackage{url}
+\usepackage[titletoc]{appendix}
+
+\setsansfont[Ligatures=TeX]{texgyreadventor}
+\setmainfont[Ligatures=TeX]{texgyrepagella}
+\setmonofont{FreeMono}
+
+\usetikzlibrary{decorations.pathreplacing}
+
+\input{portada}
+
+\author{José Ignacio Escribano}
+
+\title{}
+
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+\pagenumbering{alph}
+\setcounter{page}{1}
+
+\portada{Caso Práctico I}{Minería de datos}{Estimación y predicción con redes neuronales}{José Ignacio Escribano}{Móstoles}
+
+\listoffigures
+\thispagestyle{empty}
+\newpage
+
+\listoftables
+\thispagestyle{empty}
+\newpage
+
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\section{Introducción}
+
+En este caso práctico, pondremos en práctica lo aprendido en teoría sobre redes neuronales, a través de dos librerías distintas de R que las implementan. Éstas son \texttt{nnet} y \texttt{neuralnet}.
+
+\section{Resolución de las cuestiones de evaluación}
+
+A continuación resolveremos las cuestiones planteadas en el caso práctico. En todas las cuestiones de evaluación consideraremos la función no lineal dada por $y = x \sin x$.
+
+\subsection{Cuestión 1}
+Representamos la función $y = x \sin x$ tomando 200 puntos en el intervalo $[-2\pi, 2\pi]$. La función queda como se muestra en la Figura~\ref{fig:funcion_con_type}.\\
+
+\begin{figure}[tbph!]
+\centering
+\includegraphics[width=0.8\linewidth]{imagenes/funcion_con_type}
+\caption{Función $y = x\sin x$ con 200 puntos}
+\label{fig:funcion_con_type}
+\end{figure}
+
+Si dibujamos la función sin el parámetro \texttt{type='l'}, tenemos que sólo se muestran los puntos $\{(x_i, y_i)\}$ en el plano. El parámetro \texttt{type='l'} lo que hace es interpolar los dintintos puntos para obtener una curva. La Figura~\ref{fig:funcion_sin_type} muestra este hecho.\\
+
+\begin{figure}[tbph!]
+\centering
+\includegraphics[width=0.8\linewidth]{imagenes/funcion_sin_type}
+\caption{Función $y = x\sin x$ con 200 puntos sin el parámetro type='l'}
+\label{fig:funcion_sin_type}
+\end{figure}
+
+Esta función sí podrá ser aproximada por una red neuronal, ya que aunque se trate de una función no lineal, el Teorema de Cybenko nos asegura que una red neuronal multicapa puede aproximar una función continua en subconjuntos compactos de $\mathbb{R}^n$, que es lo que intentamos aproximar.
+
+\subsection{Cuestión 2}
+
+Ajustamos un modelo lineal con los 200 puntos calculados anteriormente. El resumen que muestra R es el siguiente:
+
+\begin{verbatim}
+Call:
+lm(formula = y ~ x)
+
+Residuals:
+       Min         1Q     Median         3Q        Max 
+-3.8188378 -2.2907973  0.9951677  2.0555346  2.8136221 
+
+Coefficients:
+              Estimate     Std. Error  t value        Pr(>|t|)    
+(Intercept) -0.9946693  0.16374284208 -6.07458 0.0000000062568 ***
+x           -0.0000000  0.04491295114  0.00000               1    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 2.315673 on 198 degrees of freedom
+Multiple R-squared:  6.660172e-32,	Adjusted R-squared:  -0.005050505 
+F-statistic: 1.318714e-29 on 1 and 198 DF,  p-value: 1
+\end{verbatim}
+
+La recta de regresión es $y=-1$. La Figura~\ref{fig:recta} muestra la recta de regresión sobre la función. La Figura indica un ajuste bastante malo. Esto lo corroboramos con el coeficiente de determinación, que es prácticamente 0, por lo que no hay relación lineal entre los valores de x e y.\\ 
+
+\begin{figure}[tbph!]
+\centering
+\includegraphics[width=0.8\linewidth]{imagenes/recta}
+\caption{Recta de regresión de la función $y=x\sin x$}
+\label{fig:recta}
+\end{figure}
+
+Comprobemos que se incumplen las hipótesis del modelo: normalidad en los residuos y/o linealidad. Para ello, representamos en R, un Q-Q plot y un gráfico de residuos (Figura~\ref{fig:residuos}).\\
+
+\begin{figure}[htbp!]
+\centering
+\subfigure[Q-Q plot]{\includegraphics[width=0.80\linewidth]{imagenes/qqplot}}
+\subfigure[Residuos]{\includegraphics[width=0.80\linewidth]{imagenes/errores}}
+\caption{Q-Q plot y gráfico de residuos del modelo lineal} \label{fig:residuos}
+\end{figure}
+
+Observamos que los residuos no están normalmente distribuidos, por lo que este modelo no es válido. No hay relación lineal entre los valores de $x$ e $y$.
+
+\subsection{Cuestión 3}
+
+
+
+\section{Conclusiones}
+
+\end{document}
