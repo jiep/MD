@@ -71,8 +71,6 @@ ent.ind <- ord$ix
 ent.y <- c(new, viga.train)[ent.ind]
 plot(ent.x, ent.y, pch=".", type="l")
 
-points(pulgadas,viga2, type='l', col=2)
-
 
 #-------------------------------------------------------------
 # Cuestión 2
@@ -114,7 +112,8 @@ while(esp_actual > ESPECIFICACION && densidades <= densidades_totales && !encont
   
   y <- viga.train
   
-  x.svm2 <- svm(x,y, type="eps-regression", kernel="radial", epsilon=0.02, gamma=40, cost=100, scale=F)
+  x.svm2 <- svm(x,y, type="eps-regression", kernel="radial", 
+      epsilon=0.02, gamma=40, cost=100, scale=F)
   
   x.test <- pulgadas[-ind.train]
   
@@ -125,18 +124,30 @@ while(esp_actual > ESPECIFICACION && densidades <= densidades_totales && !encont
   media <- mean(abs(viga.test-new))
   desv  <- sd(abs(viga.test-new))
   
+  # Objeto vacío que contendrá toda la información
+  mejor <- NULL
+  
   if(media < ESPECIFICACION){
-    mejor.densidades <- densidades
-    mejor.svm <- x.svm2
-    mejor.media <- media
-    mejor.desv <- desv
-    mejor.train <- viga.train
-    mejor.test <- x.test
-    mejor.new <- new
-    mejor.pulgadas <- x
+    mejor$densidades <- densidades
+    mejor$svm <- x.svm2
+    mejor$media <- media
+    mejor$desv <- desv
+    mejor$train <- viga.train
+    mejor$test <- x.test
+    mejor$new <- new
+    mejor$pulgadas <- x
     encontrado <- TRUE
     esp_actual <- media
   }
   
   densidades <- densidades + 1
 }
+
+ord <- sort(c(mejor$test,mejor$pulgadas), index.return=T)
+ent.x <- ord$x
+ent.ind <- ord$ix
+ent.y <- c(new, viga.train)[ent.ind]
+plot(ent.x, ent.y, pch=".", type="l")
+points(pulgadas, viga2)
+
+
