@@ -71,7 +71,7 @@
 
 \section{Introducción}
 
-En este caso práctico, utilzaremos distintas bases de datos para poner en práctica lo aprendido sobre componentes principales y análisis de correspondencias.\\
+En este caso práctico, utilizaremos distintas bases de datos para poner en práctica lo aprendido sobre componentes principales y análisis de correspondencias.\\
 
 En la primera cuestión de evaluación relizaremos un análisis de componentes principales y en la segunda un análisis de correspondecias. En ambos casos utilizaremos el software estadístico R.
 
@@ -181,7 +181,10 @@ Este gráfico tiene difícil interpretabilidad, por lo que eliminamos los puntos
 \label{fig:dos_componentes_nombres}
 \end{figure}
 
-Podemos mejorar el gráfico utilizando el biplot como se puede ver en la Figura~\ref{fig:biplot}\\
+Se puede observar un comportamiento similar entre la cocina, electricidad y radio, y entre agua, baño y nevera, ya que se encuentran muy próximos entre sí en el gráfico. En el primer caso, el uso de esas comodidades del hogar es bastante extendido entre las distintas zonas de Jerusalén, mientras que en el segundo caso, estas comodidades son frenos frecuentes entre las distintas zonas de Jerusalén.\\
+Asimismo, se observan dos casos extremos: por un lado la televisión, y por el otro, el lavabo. En el primero, su presencia entre las distintas zonas de Jerusalén es testimonial, mientras que en el segundo es ampliamente utilizado en todas las zonas de Jerusalén.\\
+
+Podemos mejorar el gráfico utilizando el biplot como se puede ver en la Figura~\ref{fig:biplot}.\\
 
 \begin{figure}[tbph!]
 \centering
@@ -189,6 +192,8 @@ Podemos mejorar el gráfico utilizando el biplot como se puede ver en la Figura~
 \caption{Biplot}
 \label{fig:biplot}
 \end{figure}
+
+Se observa que las flechas con las zonas de Jerusalén apuntan hacia las comodidades más extendidas entre las que se encuentran el lavabo, la radio, la electricidad y la cocina, como habíamos visto anteriormente.\\
 
 \subsection{Segunda cuestión}
 
@@ -219,7 +224,7 @@ Los datos se encuentran dividos por sexo, por lo que debemos agrupar los datos d
 
 A continuación realizamos tres análisis de correspondencias: para mujeres, hombres y datos conjuntos.\\
 
-Realizamos, en primer lugar, el análisis para las mujeres. La Figura~\ref{fig:mujeres_ca} el resultado gráfico del análisis de correspondencias.\\
+Realizamos, en primer lugar, el análisis para las mujeres. La Figura~\ref{fig:mujeres_ca} muestra el resultado gráfico del análisis de correspondencias.\\
 
 \begin{figure}[tbph!]
 \centering
@@ -256,8 +261,12 @@ En definitiva, se observa una clara tendencia a aparecer los colores claros u os
 
 \section{Conclusiones}
 
+En este caso práctico hemos visto cómo realizar análisis de componentes principales y de correspondencias. En ambos casos hemos utilizado R, junto con librerías que implementan métodos para realizar tales análisis. En el primer caso, hemos utilizado distintos tipos de gráficos para analizar las comodidades del hogar entre distintas zonas de Jerusalén, entre los que se encuentra el biplot. En el segundo caso, hemos realizado un análisis de correspondencia para establecer relaciones entre color de pelo y ojos entre hombres y mujeres. 
 
+\clearpage
 
 \section{Código R}
+
+\verbatiminput{caso_1.R}
 
 \end{document}
