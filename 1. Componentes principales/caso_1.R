@@ -1,4 +1,4 @@
-#-------------------------------------------------------------
+﻿#-------------------------------------------------------------
 # Cuestiones de evaluación
 #-------------------------------------------------------------
 
@@ -35,8 +35,6 @@ plot(prcomp(gabriel1971)$x[,1:2])
 # Gráfico con las dos primeras componentes
 plot(prcomp(gabriel1971)$x[,1:2], type='n')
 text(prcomp(gabriel1971)$x[,1:2], rownames(gabriel1971))
-abline(v=0)
-abline(h=0)
 
 # Usamos el biplot para incorporar la información de las 
 # variables

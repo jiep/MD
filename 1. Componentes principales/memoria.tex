@@ -57,10 +57,6 @@
 \thispagestyle{empty}
 \newpage
 
-\listoftables
-\thispagestyle{empty}
-\newpage
-
 \tableofcontents
 \thispagestyle{empty}
 \newpage
@@ -73,9 +69,11 @@
 
 En este caso práctico, utilizaremos distintas bases de datos para poner en práctica lo aprendido sobre componentes principales y análisis de correspondencias.\\
 
-En la primera cuestión de evaluación relizaremos un análisis de componentes principales y en la segunda un análisis de correspondecias. En ambos casos utilizaremos el software estadístico R.
+En la primera cuestión de evaluación realizaremos un análisis de componentes principales y en la segunda un análisis de correspondencias. En ambos casos utilizaremos el software estadístico R.
 
 \section{Resolución de las cuestiones de evaluación}
+
+A continuación, resolveremos las cuestiones planteadas.
 
 \subsection{Primera cuestión}
 
@@ -97,7 +95,7 @@ refrigerator     29.2     26.3    5.3   10.5     52.8     49.7    21.7     9.5  
 
 Tenemos 8 variables en esta base de datos: CRISTIAN (cristianos), ARMENIAN (armenios), JEWISH (judíos), MOSLEM (musulmanes), MODERN.1 (modernos.1), MODERN.2 (modernos.2), OTHER.1 (otros.1), OTHER.2 (otros.2) y RUR (población rural).\\
 
-Las comodidades de los hogares son lavabo, cocina, baño, electricidad, agua, radio, televisión y nevera.\\
+Las comodidades de los hogares son toilet (lavabo), kitchen (cocina), bath (baño),  electrcity (electricidad), water (agua), radio, tv set (televisión) y refrigerator (nevera).\\
 
 Antes de realizar el PCA, realizamos un resumen de cada variable para ver si existen grandes diferencias de escala entre las variables.
 
@@ -163,7 +161,7 @@ Cumulative Proportion   0.9387  0.97496  0.99240 0.99667 0.99872 0.99981 1.00000
 
 La primera componentes explica más del 93\% de la varianza de los datos, y entre las dos primeras casi el 97.5\% de la varianza.\\
 
-Cogeremos las dos primeras componentes para representar los datos en un diagrama de dispersión (Figura~\ref{fig:dos_componentes}).\\
+Elegimos las dos primeras componentes para representar los datos en un diagrama de dispersión (Figura~\ref{fig:dos_componentes}).\\
 
 \begin{figure}[tbph!]
 \centering
@@ -196,8 +194,9 @@ Podemos mejorar el gráfico utilizando el biplot como se puede ver en la Figura~
 Se observa que las flechas con las zonas de Jerusalén apuntan hacia las comodidades más extendidas entre las que se encuentran el lavabo, la radio, la electricidad y la cocina, como habíamos visto anteriormente.\\
 
 \subsection{Segunda cuestión}
+En esta cuestión utilizaremos la base de datos HairEyeColor disponible en el paquete datasets de R.\\
 
-Comenzamos viendo los datos de los que disponenemos:
+Comenzamos viendo los datos de los que dispone esta base de datos:
 
 \begin{verbatim}
 , , Sex = Male
@@ -220,7 +219,7 @@ Hair    Brown Blue Hazel Green
 
 \end{verbatim}
 
-Los datos se encuentran dividos por sexo, por lo que debemos agrupar los datos de cada sexo para obtener los datos globales de hombres y mujeres.\\
+Los datos se encuentran divididos por sexo, por lo que debemos agrupar los datos de cada sexo para obtener los datos globales de hombres y mujeres.\\
 
 A continuación realizamos tres análisis de correspondencias: para mujeres, hombres y datos conjuntos.\\
 
@@ -235,7 +234,7 @@ Realizamos, en primer lugar, el análisis para las mujeres. La Figura~\ref{fig:m
 
 Se puede observar la cercanía entre el pelo negro y ojos marrones, lo que hace suponer la aparición frecuente de estos colores de pelo y ojos entre las mujeres. De igual forma, se observa la cercanía entre entre el pelo rubio y ojos azules lo que supone la alta presencia de estos colores de pelo y ojos. También, hay mucha cercanía entre el color de pelo rojo y ojos avellana (hazel), lo que hace pensar en la presencia de muchas mujeres con estos colores.\\
 
-Por último, notar que el color de pelo marrón y el color de ojos verdes parecen no estar cerca de ningún otro color. El primero, se encuentra en el centro del gráfico, por lo que hace pensar en que aparece tener características especiales. El segundo, también parece estar alejado de todos los demás, lo que hace pensar que el color de ojos verdes se da con distintos colores de pelo.\\
+Por último, notar que el color de pelo marrón y el color de ojos verdes parecen no estar cerca de ningún otro color. El primero, se encuentra en el centro del gráfico, por lo que hace pensar que no tiene relación con otros colores de pelo u ojos. El segundo, también parece estar alejado de todos los demás, lo que hace pensar que el color de ojos verdes se da con distintos colores de pelo.\\
 
 \begin{figure}[tbph!]
 \centering
@@ -266,6 +265,8 @@ En este caso práctico hemos visto cómo realizar análisis de componentes princ
 \clearpage
 
 \section{Código R}
+
+A continuación se muestra el código R utilizado para resolver las cuestiones planteadas.
 
 \verbatiminput{caso_1.R}
 
