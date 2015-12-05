@@ -23,10 +23,10 @@ summary(gabriel1971)
 prcomp(gabriel1971)
 
 # Resumen del análisis de componentes principales
-summary(prcomp(gabriel1971, scale=TRUE))
+summary(prcomp(gabriel1971, scale=FALSE))
 
 # Gráfico de la importancia de cada componente
-plot(prcomp(gabriel1971, scale=TRUE), 
+plot(prcomp(gabriel1971, scale=FALSE), 
     main="Importancia de cada componente")
 
 # Gráfico de dispersión de las dos primeras componentes
