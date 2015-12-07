@@ -30,8 +30,8 @@ viga.train <- viga2[ind.train]
 # Variable con los cálculos de densidad de los 289 puntos
 viga.test <- viga2[-ind.train]
 
-# Variable que será el punto del diámetro de la viga en la que 
-# se calcula la densidad
+# Variable que será el punto del diámetro de la viga en la 
+# que se calcula la densidad
 x <- pulgadas[ind.train]
 
 y <- viga.train
@@ -94,7 +94,8 @@ ESPECIFICACION <- 5 # Especificación de los ingenieros
 esp_actual <- 1000
 encontrado <- FALSE
 media <- 100
-while(esp_actual > ESPECIFICACION && densidades <= densidades_totales && !encontrado){
+while(esp_actual > ESPECIFICACION && 
+    densidades <= densidades_totales && !encontrado){
   
   # Seleccionamos una muestra como entrenamiento
   ind.train <- sample(1:densidades_totales, densidades)
@@ -106,8 +107,8 @@ while(esp_actual > ESPECIFICACION && densidades <= densidades_totales && !encont
   # Test de viga
   viga.test <- viga2[-ind.train]
   
-  # Variable que será el punto del diámetro de la viga en la que 
-  # se calcula la densidad
+  # Variable que será el punto del diámetro de la viga en la 
+  #  que se calcula la densidad
   x <- pulgadas[ind.train]
   
   y <- viga.train

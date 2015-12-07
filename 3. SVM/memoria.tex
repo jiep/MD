@@ -56,10 +56,6 @@
 \thispagestyle{empty}
 \newpage
 
-\listoftables
-\thispagestyle{empty}
-\newpage
-
 \tableofcontents
 \thispagestyle{empty}
 \newpage
@@ -70,7 +66,11 @@
 
 \section{Introducción}
 
+En este caso práctico veremos cómo aplicar las máquinas de vectores soporte para predecir la densidad de una viga. Aplicaremos distintos tipos de kernel para mejorar el ajuste. Por último, calcularemos el número mínimo de densidades para conseguir que la función de ajuste siga las especificaciones marcadas por los ingenieros. 
+
 \section{Resolución de las cuestiones de evaluación}
+
+A continuación, resolveremos las cuestiones de evaluación planteadas.
 
 \subsection{Cuestión 1}
 
@@ -194,13 +194,22 @@ La Figura~\ref{fig:plot_fabricante} muestra estos datos en forma de gráfica.\\
 
 \subsection{Cuestión 3}
 
-Para obtener el número mínimo de densidades para que el modelo siendo válido, es decir, el error absoluto en las predicciones sea mínimo, tomamos una muestra de 2 densidades aleatoriamente, entrenamos el modelo, y lo verificamos con los datos restantes. Si se cumple que el error absoluto es menor que 5, nos quedamos con él, en caso contrario aumentamos en una unidades el número de densidades.\\
+Para obtener el número mínimo de densidades para que el modelo siendo válido, es decir, el error absoluto en las predicciones sea mínimo, tomamos una muestra de 2 densidades aleatoriamente, entrenamos el modelo, y lo verificamos con los datos restantes. Si se cumple que el error absoluto es menor que 5, nos quedamos con él, en caso contrario aumentamos en una unidad el número de densidades.\\
 
-Implementando el algoritmo anterior en R, tenemos que este número mínimo de densidades es 2. En la Figura
+Implementando el algoritmo anterior en R, tenemos que este número mínimo de densidades es 2. En la Figura~\ref{fig:2sv} se puede ver la función predicha por este SVM junto a la función original.\\
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\linewidth]{imagenes/2sv}
+\caption{Función predicha por con dos vectores soporte}
+\label{fig:2sv}
+\end{figure}
+
+Vemos que en algunos lugares el ajuste es bastante bueno, mientras que en otros es bastante malo, aunque el ajuste cumple con las especificaciones fijadas por los ingenieros (Tabla~\ref{tbl:medias}), aunque tiene una desviación típica del error muy alta.\\
 
 \begin{table}[htbp!]
 \centering
-\caption{Media y desviación típica según el número de densidades}
+\caption{Media y desviación típica del error absoluto según el número de densidades}
 \label{tbl:medias}
 \begin{tabular}{@{}ccc@{}}
 \toprule
@@ -216,8 +225,36 @@ Número de densidades & Media     & Desviación típica \\ \midrule
 \end{tabular}
 \end{table}
 
+Según vamos aumentando el número de vectores soportes, se va mejorando el ajuste de la función (Figura~\ref{fig:sv}).\\
+
+\begin{figure}[htbp]
+\centering
+\subfigure[2 vectores soporte]{\includegraphics[width=0.45\linewidth]{imagenes/2sv}}
+\subfigure[3 vectores soporte]{\includegraphics[width=0.45\linewidth]{imagenes/3sv}}
+\subfigure[4 vectores soporte]{\includegraphics[width=0.45\linewidth]{imagenes/4sv}}
+\subfigure[5 vectores soporte]{\includegraphics[width=0.45\linewidth]{imagenes/5sv}}
+\subfigure[6 vectores soporte]{\includegraphics[width=0.45\linewidth]{imagenes/6sv}}
+\subfigure[7 vectores soporte]{\includegraphics[width=0.45\linewidth]{imagenes/7sv}}
+\subfigure[8 vectores soporte]{\includegraphics[width=0.45\linewidth]{imagenes/8sv}}
+\subfigure[9 vectores soporte]{\includegraphics[width=0.45\linewidth]{imagenes/9sv}}
+\caption{Función predicha por con distintos número de vectores soporte} 
+\label{fig:sv}
+\end{figure}
+
+A tenor de la Tabla~\ref{tbl:medias} y la Figura~\ref{fig:sv}, todos los SVM entre 2 y 9 vectores soporte cumplen con las especificaciones de los ingenieros, aunque algunos debidos a la variabilidad de los errores no parecen óptimos.\\
+
+En el caso de 9 vectores soporte, se observa un acusado descenso del promedio y de la desviación típica del error, por lo que parece un número de densidades asequible para ser utilizado, con su reducción de coste asociado, aunque se pueden elegir cualquiera de los demás modelos desde 2 hasta 8 vectores soporte ya que cumplen todos con las especificaciones de los ingenieros.
+
 \section{Conclusiones}
 
+En este caso práctico, hemos puesto en práctica lo aprendido sobre máquinas de vectores soporte, aplicándolo a una aplicación real como puede ser la predicción de la densidad de una viga. También, hemos visto cómo mejorar la predicción de una función, usando el ``kernel trick''.\\
+
+El software científico R nos ha ayudado mucho debido a las librerías que implementan los SVM, incluyendo distintos tipos de kernel, que nos han ahorrado mucho tiempo gracias a su potencia de cálculo. 
+
+\clearpage
+
 \section{Código R utilizado}
+
+\verbatiminput{caso_3.R}
 
 \end{document}
