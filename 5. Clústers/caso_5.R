@@ -7,7 +7,8 @@
 #-------------------------------------------------------------
 
 # Cargamos los datos
-datos <- read.csv2(file.choose(), header=TRUE, row.names=1, dec=",")
+datos <- read.csv2(file.choose(), header=TRUE, 
+  row.names=1, dec=",")
 datos <- as.matrix(datos)
 
 # Número de países
@@ -16,60 +17,82 @@ n <- dim(datos)[1]
 # Número de variables
 p <- dim(datos)[2]
 
-# Tomamos logaritmos de la variable GPB y renombramos la variable a logGNP
+# Tomamos logaritmos de la variable GPB y 
+# renombramos la variable a logGNP
 datos[,6] <- log(datos[,6])
 colnames(datos)[6] <- "logGNP"
 
 # Estandarizamos los datos
 datos.st <- scale(datos)
 
-# Aplicamos el algoritmo de las k-medias
-clusters2.datos <- kmeans(datos.st, centers=2, nstart=25)
-
-# Calculamos los clusters desde 2 hasta 15 clusters
-SSW <- vector(mode="numeric", length=15)
-
-SSW[1] <- (n-1)*sum(apply(datos.st, 2, var))
-
-for(i in 2:15){
-  SSW[i] <- sum(kmeans(datos.st, centers=i, nstart=25)$withinss)
-}
-
-plot(1:15, SSW, type='b', xlab="Número de clusters", ylab="Suma de cuadrados dentro de los grupos", pch=19, col="steelblue4")
-
-# Elegimos 4 como el número de clusters
-clusters4.datos <- kmeans(datos.st, 4, nstart=25)
+# Aplicamos el algoritmo de las k-medias para 5 clusters
+clusters5.datos <- kmeans(datos.st, 5, nstart=25)
 
 # Calculamos los centroides
-centroides <- aggregate(datos.st, by=list(clusters4.datos$cluster), FUN=mean)
+centroides <- aggregate(datos.st, 
+  by=list(clusters5.datos$cluster), FUN=mean)
 
 # Vemos los centroides
 t(centroides)
 
 # Dibujamos las variables dos a dos
-nk <- 4
-pairs(datos.st, col=clusters4.datos$cluster, pch=19)
-points(clusters4.datos$centers, col=1:nk, pch=19, cex=2)
+nk <- 5
+pairs(datos.st, col=clusters5.datos$cluster, pch=19)
+points(clusters5.datos$centers, col=1:nk, pch=19, cex=2)
 
 # Cargamos la librería cluster
 library(cluster)
 
-datos.clusters4 <- clusters4.datos$cluster
-clusplot(datos.st, datos.clusters4, color=TRUE, shade=TRUE, labels=2, lines=0)
+datos.clusters5 <- clusters5.datos$cluster
+clusplot(datos.st, datos.clusters5, color=TRUE, shade=TRUE, 
+  labels=2, lines=0)
 
-# Cluster jerárquico
+# Países por cluster
+grupo_1 = which(clusters5.datos$cluster==1)
+grupo_2 = which(clusters5.datos$cluster==2)
+grupo_3 = which(clusters5.datos$cluster==3)
+grupo_4 = which(clusters5.datos$cluster==4)
+grupo_5 = which(clusters5.datos$cluster==5)
+
+#-------------------------------------------------------------
+# Cuestión 1
+#-------------------------------------------------------------
+
+# Cargamos la dase de datos iris del paquete datasets
+library(datsets)
+
+# Dimensiones de los datos. Se encuentran en la variable iris
+dim(iris)
+
+# Elegimos 50 datos al azar
+ind <- sample(1:150, 50)
+iris.cl <- iris[ind, 1:4]
+
+# Guardamos las etiquetas de cada dato
+etiquetas <- iris[ind, 5]
+
+# Calculamos el dendograma
 
 # Matriz de distancia de los datos
-d <- dist(datos, method="euclidean")
+d <- dist(iris.cl, method="euclidean")
 
-# Usamos el método ward
-fit <- hclust(d, method="ward.D")
+# Calculamos el dendograma con distintos métodos
+metodos <- c("ward.D", "ward.D2", "single", "complete", 
+  "average", "mcquitty", "median", "centroid")
 
-# Representamos el dendograma
-plot(fit, labels=rownames(datos), cex=0.7)
+for(metodo in 1:length(metodos)){
+  # Usamos el método del vector ''metodos'' 
+  # definido anteriormente
+  fit <- hclust(d, method=metodos[metodo])
+  
+  # Representamos el dendograma
+  plot(fit, labels=etiquetas, cex=0.7, 
+    main=paste("Dendograma con el método ", metodos[metodo]))
+  
+  # Grupo de cada 
+  groups <- cutree(fit, k=3)
+  
+  # Recuadramos los cluesters
+  rect.hclust(fit, k=3, border="blue")
+}
 
-# Grupo de cada país
-groups <- cutree(fit, k=4)
-
-# Recuadramos los cluesters
-rect.hclust(fit, k=4, border="blue")
