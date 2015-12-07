@@ -82,7 +82,7 @@ Representamos la función $y = x \sin x$ tomando 200 puntos en el intervalo $[-2
 \label{fig:funcion_con_type}
 \end{figure}
 
-Si dibujamos la función sin el parámetro \texttt{type='l'}, tenemos que sólo se muestran los puntos $\{(x_i, y_i)\}$ en el plano. El parámetro \texttt{type='l'} lo que hace es interpolar los dintintos puntos para obtener una curva. La Figura~\ref{fig:funcion_sin_type} muestra este hecho.\\
+Si dibujamos la función sin el parámetro \texttt{type='l'}, tenemos que sólo se muestran los puntos $\{(x_i, x_i \sin x_i)\}$  con $i = 1,\dots, 200$ en el plano. El parámetro \texttt{type='l'} lo que hace es interpolar los dintintos puntos para obtener una curva. La Figura~\ref{fig:funcion_sin_type} muestra este hecho.\\
 
 \begin{figure}[tbph!]
 \centering
@@ -139,7 +139,7 @@ Observamos que los residuos no están normalmente distribuidos, por lo que este 
 
 \subsection{Cuestión 3}
 
-Procedemos a ajustar la función con una red neuronal. Representamos la red que ajusta la función desde 1 hasta 10 neuronas (Figura~\ref{fig:diferentes_neuronas}).\\
+Procedemos a ajustar la función con una red neuronal. Representamos la función original junto con la función de ajuste de la red neuronal desde 1 hasta 10 neuronas (Figura~\ref{fig:diferentes_neuronas}).\\
 
 \begin{figure}[tbph!]
 \centering
@@ -148,7 +148,7 @@ Procedemos a ajustar la función con una red neuronal. Representamos la red que 
 \label{fig:diferentes_neuronas}
 \end{figure}
 
-Se observa que, a medida que aumentamos el número de neuronas, el ajuste de la función aprendida cada vez es mejor, aunque a partir de la cuarta neurona, apenas hay diferencias entre entre la función predicha y la original. Por tanto, con 4 neuronas es suficiente predecir correctamente esta función.\\
+Se observa que, a medida que aumentamos el número de neuronas, el ajuste de la función aprendida cada vez es mejor, aunque a partir de la cuarta neurona, apenas hay diferencias entre entre la función predicha y la original. Por tanto, con 4 neuronas es suficiente para predecir correctamente esta función.\\
 
 A modo de ejemplo, vemos la salida que produce R para la red con 4 neuronas.
 
@@ -192,7 +192,7 @@ Observamos que, en el caso de una sola neurona tenemos un error de 374.79 tras 3
 
 En este caso práctico, hemos puesto en práctica las redes neuronales para aprender y predecir valores de una función. También vemos visto que es indiferente que la función sea o no lineal, puesto que una red neuronal multicapa será capaz de aprenderla gracias al teorema de Cybenko.\\
 
-En R existen distintas librerías que implementan redes neuronales, por lo que hay que tener cuidado a la hora de aplicar una librería u otra ya que pueden variar sensiblemente los resultados según una u otra. Pero conociendo las ventajas de cada librería podremos consguir grandes resultados gracias a la gran capacidad de cálculo de R.
+En R existen distintas librerías que implementan redes neuronales, por lo que hay que tener cuidado a la hora de aplicar una librería u otra ya que pueden variar sensiblemente los resultados según una u otra. Pero conociendo las ventajas de cada librería podremos conseguir grandes resultados gracias a la gran capacidad de cálculo de R.
 
 \clearpage
 
