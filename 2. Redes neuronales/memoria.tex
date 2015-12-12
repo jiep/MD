@@ -70,7 +70,7 @@ En este caso práctico, pondremos en práctica lo aprendido en teoría sobre red
 
 \section{Resolución de las cuestiones de evaluación}
 
-A continuación resolveremos las cuestiones planteadas en el caso práctico. En todas las cuestiones de evaluación consideraremos la función no lineal dada por $y = x \sin x$.
+A continuación resolveremos las cuestiones planteadas en el caso práctico. En todas las cuestiones de evaluación consideraremos la función no lineal dada por $y = x \sin x$ en el intervalo $[-2\pi, 2\pi]$.
 
 \subsection{Cuestión 1}
 Representamos la función $y = x \sin x$ tomando 200 puntos en el intervalo $[-2\pi, 2\pi]$. La función queda como se muestra en la Figura~\ref{fig:funcion_con_type}.\\
@@ -117,7 +117,7 @@ Multiple R-squared:  6.660172e-32,	Adjusted R-squared:  -0.005050505
 F-statistic: 1.318714e-29 on 1 and 198 DF,  p-value: 1
 \end{verbatim}
 
-La recta de regresión es $y=-1$. La Figura~\ref{fig:recta} muestra la recta de regresión sobre la función. La Figura indica un ajuste bastante malo. Esto lo corroboramos con el coeficiente de determinación, que es prácticamente 0, por lo que no hay relación lineal entre los valores de x e y.\\ 
+La recta de regresión es $y=-1$. La Figura~\ref{fig:recta} muestra la recta de regresión sobre la función. La Figura indica un ajuste bastante malo. Esto lo corroboramos con el coeficiente de determinación, $R^2$, que es prácticamente 0, por lo que no hay relación lineal entre los valores de x e y.\\ 
 
 \begin{figure}[tbph!]
 \centering
@@ -190,7 +190,7 @@ Observamos que, en el caso de una sola neurona tenemos un error de 374.79 tras 3
 
 \section{Conclusiones}
 
-En este caso práctico, hemos puesto en práctica las redes neuronales para aprender y predecir valores de una función. También vemos visto que es indiferente que la función sea o no lineal, puesto que una red neuronal multicapa será capaz de aprenderla gracias al teorema de Cybenko.\\
+En este caso práctico, hemos puesto en práctica las redes neuronales para aprender y predecir valores de una función. También hemos visto que es indiferente que la función sea o no lineal, puesto que una red neuronal multicapa será capaz de aprenderla gracias al teorema de Cybenko (sobre un subconjunto compacto de $\mathbb{R}^n$).\\
 
 En R existen distintas librerías que implementan redes neuronales, por lo que hay que tener cuidado a la hora de aplicar una librería u otra ya que pueden variar sensiblemente los resultados según una u otra. Pero conociendo las ventajas de cada librería podremos conseguir grandes resultados gracias a la gran capacidad de cálculo de R.
 

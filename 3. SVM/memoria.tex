@@ -56,6 +56,10 @@
 \thispagestyle{empty}
 \newpage
 
+\listoftables
+\thispagestyle{empty}
+\newpage
+
 \tableofcontents
 \thispagestyle{empty}
 \newpage
@@ -74,12 +78,12 @@ A continuación, resolveremos las cuestiones de evaluación planteadas.
 
 \subsection{Cuestión 1}
 
-Comenzando representando la función de las pulgadas frente a la viga2 (Figura~\ref{fig:plot_viga2_inicial}).\\
+Comenzando representando la función de la distancia (en pulgadas) frente a la densidad de la viga2 (Figura~\ref{fig:plot_viga2_inicial}).\\
 
 \begin{figure}
 \centering
 \includegraphics[width=0.8\linewidth]{imagenes/plot_viga2_inicial}
-\caption{Función del diámetro frente a la densidad}
+\caption{Función de la distancia frente a la densidad}
 \label{fig:plot_viga2_inicial}
 \end{figure}
 
@@ -96,11 +100,11 @@ Representamos los datos de entrenamiento en un diagrama de dispersión (Figura~\
 \begin{figure}
 \centering
 \includegraphics[width=0.8\linewidth]{imagenes/plot_datos_entrenamiento}
-\caption{Función del diámetro frente a la densidad con los datos de entrenamiento}
+\caption{Función de la distancia frente a la densidad con los datos de entrenamiento}
 \label{fig:plot_datos_entrenamiento}
 \end{figure}
 
-Con estos datos entrenaremos el SVM, y los restantes harán de test para comprobar la precisión del ajueste calculado.\\
+Con estos datos entrenaremos el SVM, y los restantes harán de test para comprobar la precisión del ajuste calculado.\\
 
 Probamos el SVM con un kernel lineal y comprobamos la bondad del ajuste (Figura~\ref{fig:plot_kernel_lineal}).\\
 
@@ -126,7 +130,7 @@ Calculamos la media y la desviación típica del error del modelo. La media es 0
 
 \subsection{Cuestión 2}
 
-De acuerdo a los datos de media y desviación típica del error, tenemos que el error se encuentra bastante por debajo de 5, el valor especificado por los ingenieros como el límite de la calidad de la viga. Por tanto, tomando sólo 25 muestras, tenemos un excelente modelo que permitirá ahorra costes.\\
+De acuerdo a los datos de media y desviación típica del error, tenemos que el error se encuentra bastante por debajo de 5, el valor especificado por los ingenieros como el límite de la calidad de la viga. Por tanto, tomando sólo 25 muestras, tenemos un excelente modelo que permitirá ahorrar costes.\\
 
 Los datos proporcionados al fabricante serán los 25 datos de entrenamientos juntos con los 289 predichos por el SVM. Ésto es, los datos de entrenamiento son:
 
