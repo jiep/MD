@@ -56,10 +56,6 @@
 \thispagestyle{empty}
 \newpage
 
-\listoftables
-\thispagestyle{empty}
-\newpage
-
 \tableofcontents
 \thispagestyle{empty}
 \newpage
@@ -158,6 +154,33 @@ El árbol utiliza las variables dollar, bang, crl.tot y money. El árbol se pued
 \caption{Árbol de decisión de la base de datos spam7}
 \label{fig:spam_plot}
 \end{figure}
+
+De acuerdo al árbol de la Figura~\ref{fig:spam_plot}, se pueden establecer las reglas de decisión para establecer si un correo es o no spam. Los casos de spam y no spam son respectivamente los siguientes:
+
+\begin{itemize}
+	\item Spam
+	
+	\begin{enumerate}
+		\item $\text{dollar} < 0.0555$ y $\text{dollar} \geq 0.0875$ y $\text{crl.tot} \geq 85.5$ y $\text{bang} \geq 0.5155$
+		
+		\item $\text{dollar} < 0.0555$ y $\text{dollar} \geq 0.0875$ y $\text{crl.tot} \geq 85.5$ y $\text{money}$\footnote{Notar que los hijos del nodo money conducen a la presencia de spam, independientemente de la frecuencia de esta palabra en el email.}
+		
+		\item $\text{dollar} \geq 0.0555$ y $\text{bang} \geq 0.0775$
+		
+		\item $\text{dollar} \geq 0.0555$ y $\text{bang} < 0.0775$ y $\text{money} \geq 0.025$
+	\end{enumerate}
+	
+	\item No spam
+	
+	\begin{enumerate}
+		\item $\text{dollar} < 0.0555$ y $\text{bang} < 0.0875$
+		
+		\item $\text{dollar} < 0.0555$ y $\text{bang} \geq 0.0875$ y $\text{crt.tot} < 85.5$
+		
+		\item $\text{dollar} \geq 0.0555$ y $\text{bang} < 0.0775$ y $\text{money} < 0.025$
+		
+	\end{enumerate}
+\end{itemize}
 
 \section{Conclusiones}
 
