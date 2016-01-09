@@ -50,7 +50,7 @@
 \pagenumbering{alph}
 \setcounter{page}{1}
 
-\portada{Caso Práctico IV}{Minería de datos}{Árboles y reglas de de decisión}{José Ignacio Escribano}{Móstoles}
+\portada{Caso Práctico IV}{Minería de datos}{Árboles y reglas de decisión}{José Ignacio Escribano}{Móstoles}
 
 \listoffigures
 \thispagestyle{empty}
@@ -66,7 +66,7 @@
 
 \section{Introducción}
 
-En este caso práctico utilizaremos los árboles como herramienta de clasificación. Utilizaremos dos bases de datos conocidas \texttt{iris} y \texttt{spam7}. La primera, muestra tres tipos de especies de iris a partir de distintas medidas de los pétalos y sépalos. La segunda, clasifica el spam a partir de distintas palabras o símbolos que se encuentran en los correos electrónicos.
+En este caso práctico utilizaremos los árboles de decisión como herramienta de clasificación. Usaremos dos bases de datos conocidas: \texttt{iris} y \texttt{spam7} disponibles en R. La primera, muestra tres tipos de especies de iris a partir de distintas medidas de los pétalos y sépalos. La segunda, clasifica el spam a partir de distintas palabras o símbolos que se encuentran en los correos electrónicos.
 
 \section{Resolución de las cuestiones de evaluación}
 
@@ -111,7 +111,7 @@ Vemos que es el árbol podado es el mismo que sin podar, por lo que en este caso
 
 En esta cuestión utilizaremos la base de datos \texttt{spam7} disponible en el paquete de DAAG de R. Esta base de datos consta de seis variables explicativas para medir la presencia de spam en emails: crl.tot (longitud de las palabras que están en mayúsculas), dollar (frecuencia del símbolo ``\$'' en términos del porcentaje respecto de caracteres), bang (frecuencia del símbolo ``!'' en términos del porcentaje respecto de caracteres), money (frecuencia de la palabra ``money'' en términos del porcentaje respecto de caracteres), n000 (frecuencia de la cadena ``n000'' en términos del porcentaje respecto de caracteres) y make (frecuencia de la palabra ``make'' en términos del porcentaje respecto de caracteres).\\
 
-Calculamos el árbol de decisión usando el paquete tree de R. Un resumen del árbol se puede ver a continuación:
+Calculamos el árbol de decisión usando el paquete \texttt{tree} de R. Un resumen del árbol se puede ver a continuación:
 
 \begin{verbatim}
 Classification tree:
@@ -155,7 +155,7 @@ El árbol utiliza las variables dollar, bang, crl.tot y money. El árbol se pued
 \label{fig:spam_plot}
 \end{figure}
 
-De acuerdo al árbol de la Figura~\ref{fig:spam_plot}, se pueden establecer las reglas de decisión para establecer si un correo es o no spam. Los casos de spam y no spam son respectivamente los siguientes:
+De acuerdo al árbol de la Figura~\ref{fig:spam_plot}, se pueden establecer las reglas de decisión para establecer si un correo es o no spam. Los casos de spam y no spam son los siguientes:
 
 \begin{itemize}
 	\item Spam
@@ -163,7 +163,7 @@ De acuerdo al árbol de la Figura~\ref{fig:spam_plot}, se pueden establecer las 
 	\begin{enumerate}
 		\item $\text{dollar} < 0.0555$ y $\text{dollar} \geq 0.0875$ y $\text{crl.tot} \geq 85.5$ y $\text{bang} \geq 0.5155$
 		
-		\item $\text{dollar} < 0.0555$ y $\text{dollar} \geq 0.0875$ y $\text{crl.tot} \geq 85.5$ y $\text{money}$\footnote{Notar que los hijos del nodo money conducen a la presencia de spam, independientemente de la frecuencia de esta palabra en el email.}
+		\item $\text{dollar} < 0.0555$ y $\text{dollar} \geq 0.0875$ y $\text{crl.tot} \geq 85.5$ y $\text{money} > 0$\footnote{Notar que los hijos del nodo money conducen a la presencia de spam, independientemente de la frecuencia de esta palabra en el email.}
 		
 		\item $\text{dollar} \geq 0.0555$ y $\text{bang} \geq 0.0775$
 		
@@ -184,7 +184,7 @@ De acuerdo al árbol de la Figura~\ref{fig:spam_plot}, se pueden establecer las 
 
 \section{Conclusiones}
 
-En este caso práctico hemos visto cómo crear árboles de decisión y podarlos, si fuera necesario. Los árboles de decisión son una técnica de minería de datos muy potente, ya que es fácilmente entendible por las personas, y muy fácil de programar el modelo obtenido.\\
+En este caso práctico hemos visto cómo crear árboles de decisión y podarlos, si fuera necesario. Los árboles de decisión son una técnica de minería de datos muy potente, ya que es fácilmente entendible por las personas, y muy fácil de programar las reglas de decisión obtenidas.\\
 
 R nos ha permitido ahorrar mucho tiempo debido a las librerías que implementan árboles. Existen diferentes librerías que implementan los árboles de decisión, por lo que antes de utilizar una u otra será necesario conocer la documentación y los algoritmos que implementa cada una de ellas, de acuerdo al problema que estemos tratando. 
 
