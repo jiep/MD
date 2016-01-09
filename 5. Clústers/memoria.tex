@@ -51,7 +51,7 @@
 \pagenumbering{alph}
 \setcounter{page}{1}
 
-\portada{Caso Práctico I}{Minería de datos}{Análisis de clústers}{José Ignacio Escribano}{Móstoles}
+\portada{Caso Práctico V}{Minería de datos}{Análisis de clústers}{José Ignacio Escribano}{Móstoles}
 
 \listoffigures
 \thispagestyle{empty}
@@ -95,21 +95,21 @@ logGNP                -0.24674302 -1.387819 -0.04384888  1.3387075 -0.7900894
 \end{Verbatim}
 
 
-Representamos los clusters, representando las variables dos a dos, como se puede ver en la Figura~\ref{fig:pairs_plot}.\\
+Representamos los clústers, representando las variables dos a dos, como se puede ver en la Figura~\ref{fig:pairs_plot}.\\
 
 \begin{figure}[tbph!]
 \centering
 \includegraphics[width=0.8\linewidth]{imagenes/pairs_plot}
-\caption{Clusters mediante la representación de las variables dos a dos}
+\caption{Clústers mediante la representación de las variables dos a dos}
 \label{fig:pairs_plot}
 \end{figure}
 
 Este gráfico tiene difícil interpretabilidad, por lo que procedemos reduciendo la dimensión de los datos, haciendo uso del análisis de componentes principales. Así, los cinco clústers se pueden ver en la Figura~\ref{fig:plot_5clusters}.\\
 
-\begin{figure}[tbph!]
+\begin{figure}[tbph!] 
 \centering
 \includegraphics[width=0.8\linewidth]{imagenes/plot_5clusters}
-\caption{Clusters mediante el análisis de componentes principales}
+\caption{Clústers mediante el análisis de componentes principales}
 \label{fig:plot_5clusters}
 \end{figure}
 
@@ -153,23 +153,23 @@ Kuwait     Hong_Kong Singapore      United_Arab_Emir
 #-------------------------------------------------------------
 Bolivia     Mexico     Iran      Bangladesh India    Nepal   
 Botswana    Congo      Gabon     Ghana      Kenya    Namibia    
-Nigeria     Sudan      Swaziland Uganda     Tanzania  Zaire 
+Nigeria     Sudan      Swaziland Uganda     Tanzania Zaire 
 Zambia 
 \end{verbatim}
 
-En el primer clúster nos encontramos con países no europeos poco desarrollados o en vías de desarrollo. En el segundo, países africanos (excepto Afganistán) muy poco desarrollados. En el tercer clúster tenemos países no africanos poco desarrollados o en vías de desarrollo. En el cuarto clúster tenemos a los países más desarrollados y con mayor calidad de vida del mundo. Por último, en el quinto clúster se encuentran países asiáticos, africanos y americanos poco desarrollado.
+En el primer clúster nos encontramos con países no europeos poco desarrollados o en vías de desarrollo. En el segundo, países africanos (excepto Afganistán) muy poco desarrollados. En el tercer clúster tenemos países no africanos poco desarrollados o en vías de desarrollo. En el cuarto clúster tenemos a los países más desarrollados y con mayor calidad de vida del mundo. Por último, en el quinto clúster se encuentran países asiáticos, africanos y americanos poco desarrollados.
 
 \subsection{Cuestión 2}
 
 En esta cuestión usaremos la base de datos \texttt{iris}, disponible en el paquete datasets de R. La base de datos describe tres tipos de iris (setosa, virginica y versicolor) a partir de las longitud y anchura de los pétalos y de los sépalos.\\
 
-De esta base de datos, elegimos 50 para obtener 3 clusters. En este caso, usamos clusters jerárquicos.\\
+De esta base de datos, elegimos 50 datos (eliminando el tipo de iris) para obtener 3 clusters. En este caso, usamos clusters jerárquicos.\\
 
 Usamos la distancia euclídea para obtener la matriz de distancias.\\
 
 Tenemos varios métodos de agrupación disponibles en R para obtener el dendograma. Usaremos todos para ver con cuál se obtiene una mejor clasificación.\\
 
-Comenzamos con el método ward.D. El el dendograma obtenido con este método se puede ver en la Figura~\ref{fig:dendograma_ward.D}\\
+Comenzamos con el método ward.D. El dendograma obtenido con este método se puede ver en la Figura~\ref{fig:dendograma_ward.D}\\
 
 \begin{figure}[tbph!]
 \centering
@@ -191,7 +191,9 @@ Usamos ahora el método ward.D2, cuyo dendograma se muestra en la Figura~\ref{fi
 
 De nuevo, se obtiene que se detecta perfectamente la especie setosa, pero se mezclan las especies versicolor y virginica en el tercer cluster, el que está a la derecha.\\
 
-Si repetimos lo anterior con los métodos restantes (single, complete, average, mcquitty, median y centroid), obtenemos los mismos resultados: se detecta a la perfección la especie setosa, pero en un cluster se mezclan las especies virginica y versicolor. Ver Figura~\ref{fig:dendogramas_otros_metodos}.\\
+Si repetimos lo anterior con los métodos restantes (single, complete, average, mcquitty, median y centroid), obtenemos los mismos resultados: se detecta a la perfección la especie setosa, pero en un cluster se mezclan las especies virginica y versicolor (Figura~\ref{fig:dendogramas_otros_metodos}).\\
+
+En este caso, ninguno de los métodos es incapaz de clasificar a la perfección los tres tipos de iris, por lo que la utilización de uno u otro es indiferente.
 
 \begin{figure}[htbp]
 \centering
